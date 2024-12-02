@@ -55,11 +55,16 @@ def predict_stock(model, data, scaler, time_step=60):
     
     return predicted_prices
 
-# Function to fetch all Taiwan listed stocks
+
+# Function to fetch all Taiwan listed stocks (Taiwan 50)
 def get_all_taiwan_stocks():
-    # Here you should implement a method to get all Taiwan listed stock tickers
-    # This is a placeholder list of tickers for demonstration purposes
-    return ["2330.TW", "2317.TW", "2303.TW", "2412.TW", "2454.TW"]
+    return [
+        "1101.TW", "1216.TW", "1301.TW", "1326.TW", "1402.TW", "2002.TW", "2105.TW", "2207.TW", "2303.TW", "2308.TW",
+        "2317.TW", "2327.TW", "2330.TW", "2352.TW", "2357.TW", "2382.TW", "2408.TW", "2412.TW", "2454.TW", "2474.TW",
+        "2603.TW", "2609.TW", "2615.TW", "2633.TW", "2801.TW", "2880.TW", "2881.TW", "2882.TW", "2883.TW", "2884.TW",
+        "2885.TW", "2886.TW", "2891.TW", "2892.TW", "2912.TW", "3008.TW", "3045.TW", "3231.TW", "3439.TW", "4938.TW",
+        "5880.TW", "6505.TW", "9910.TW", "1210.TW", "1227.TW", "1229.TW", "1232.TW", "1256.TW", "1314.TW", "1321.TW"
+    ]
 
 # Function to get top 10 potential stocks
 def get_top_10_potential_stocks(period):
