@@ -99,10 +99,8 @@ def stock_prediction_app(period):
     return df
 
 # Define Gradio interface
-inputs = [
-    gr.inputs.Dropdown(choices=["1mo", "3mo", "6mo", "9mo", "1yr"], label="時間範圍")
-]
-outputs = gr.outputs.Dataframe(label="潛力股推薦結果")
+inputs = gr.Dropdown(choices=["1mo", "3mo", "6mo", "9mo", "1yr"], label="時間範圍")
+outputs = gr.Dataframe(label="潛力股推薦結果")
 
 gr.Interface(fn=stock_prediction_app, inputs=inputs, outputs=outputs, title="台股潛力股推薦系統 - LSTM模型")\
     .launch()
