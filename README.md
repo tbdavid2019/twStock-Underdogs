@@ -16,6 +16,7 @@ Check out the configuration reference at https://huggingface.co/docs/hub/spaces-
 
 # Taiwan Stock Short-Term Potential Stock Prediction System - LSTM Model
 
+![alt text](image.png)
 This project is a stock prediction system for short-term potential stocks in the Taiwan stock market. It uses LSTM (Long Short-Term Memory) models to predict future prices based on historical data from Taiwan listed stocks. The system is implemented using Python, and the web interface is created using Gradio. The project is designed for research and educational purposes only and should not be used for investment decision-making.
 
 ## Features
@@ -65,6 +66,8 @@ This project is licensed under the MIT License. See the LICENSE file for more de
 ---
 
 # 台股短線潛力股推薦系統 - LSTM 模型
+
+![alt text](image.png)
 
 此專案是一個針對台灣股票市場短線潛力股的預測系統，使用 LSTM（長短期記憶）模型根據台灣上市股票的歷史數據來預測未來股價。本系統使用 Python 實現，並透過 Gradio 建立網頁介面。本專案僅供學術研究用途，不應用於投資決策。
 
