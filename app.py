@@ -77,21 +77,57 @@ def get_tw0051_stocks():
         "6526.TW", "1802.TW", "5522.TW", "6592.TW", "2204.TW", "2540.TW", "2539.TW", "3532.TW"
     ]
 
+# Function to fetch S&P 500 component stocks
+def get_sp500_stocks():
+    return [
+        "AAPL", "MSFT", "GOOGL", "AMZN", "FB", "TSLA", "BRK-B", "JNJ", "V", "WMT",
+        "JPM", "MA", "PG", "NVDA", "UNH", "DIS", "HD", "PYPL", "VZ", "ADBE",
+        "NFLX", "CMCSA", "PEP", "KO", "MRK", "INTC", "T", "CRM", "CSCO", "PFE",
+        "XOM", "COST", "NKE", "CVX", "WFC", "MCD", "AMGN", "MDT", "IBM", "DHR",
+        "LLY", "HON", "BA", "MMM", "NEE", "ACN", "UPS", "TMO", "AVGO", "PM"
+    ]
+
+# Function to fetch NASDAQ component stocks
+def get_nasdaq_stocks():
+    return [
+        "AAPL", "MSFT", "AMZN", "TSLA", "GOOGL", "GOOG", "FB", "NVDA", "PYPL", "ADBE",
+        "CMCSA", "NFLX", "COST", "PEP", "CSCO", "INTC", "TXN", "AVGO", "AMGN", "QCOM",
+        "CHTR", "TMUS", "SBUX", "MDLZ", "ISRG", "BKNG", "MRNA", "FISV", "CSX", "ADI",
+        "VRTX", "ATVI", "GILD", "ILMN", "ADP", "MU", "KLAC", "LRCX", "EA", "KHC",
+        "JD", "MAR", "BIDU", "MELI", "ROST", "NXPI", "SPLK", "ALGN", "DOCU", "PDD"
+    ]
+
+# Function to fetch Philadelphia Semiconductor Index component stocks
+def get_sox_stocks():
+    return [
+        "AMD", "AVGO", "TXN", "INTC", "MU", "NVDA", "QCOM", "ASML", "LRCX", "TSM",
+        "AMAT", "ON", "NXPI", "ADI", "KLAC", "SWKS", "QRVO", "MCHP", "SLAB", "ENTG",
+        "TER", "COHU", "UCTT", "ACLS", "LSCC", "MRVL", "SYNA", "MPWR", "FORM", "UCTT"
+    ]
+
+# Function to fetch Dow Jones Industrial Average component stocks
+def get_dji_stocks():
+    return [
+        "AAPL", "MSFT", "JPM", "V", "UNH", "PG", "JNJ", "WMT", "DIS", "VZ",
+        "INTC", "KO", "MRK", "GS", "TRV", "IBM", "MMM", "CAT", "RTX", "CVX",
+        "MCD", "HON", "AXP", "WBA", "NKE", "DOW", "BA", "HD", "CRM", "AMGN"
+    ]
+
 # Function to get top 10 potential stocks
 def get_top_10_potential_stocks(period, selected_indices):
     stock_list = []
-    if "tw0050台灣50" in selected_indices:
+    if "台灣50" in selected_indices:
         stock_list += get_tw0050_stocks()
-    if "tw0051中型100" in selected_indices:
+    if "台灣中型100" in selected_indices:
         stock_list += get_tw0051_stocks()
     if "S&P" in selected_indices:
-        stock_list.append("^GSPC")
+        stock_list += get_sp500_stocks()
     if "NASDAQ" in selected_indices:
-        stock_list.append("^IXIC")
+        stock_list += get_nasdaq_stocks()
     if "費城半導體" in selected_indices:
-        stock_list.append("^SOX")
+        stock_list += get_sox_stocks()
     if "道瓊" in selected_indices:
-        stock_list.append("^DJI")
+        stock_list += get_dji_stocks()
 
     stock_predictions = []
     time_step = 60
@@ -136,9 +172,9 @@ def stock_prediction_app(period, selected_indices):
 # Define Gradio interface
 inputs = [
     gr.Dropdown(choices=["3mo", "6mo", "9mo", "1yr"], label="時間範圍"),
-    gr.CheckboxGroup(choices=["tw0050台灣50", "tw0051中型100", "S&P", "NASDAQ", "費城半導體", "道瓊"], label="指數選擇")
+    gr.CheckboxGroup(choices=["台灣50", "台灣中型100", "S&P", "NASDAQ", "費城半導體", "道瓊"], label="指數選擇", value=["台灣50", "台灣中型100"])
 ]
 outputs = gr.Dataframe(label="潛力股推薦結果")
 
-gr.Interface(fn=stock_prediction_app, inputs=inputs, outputs=outputs, title="潛力股推薦系統 - LSTM模型")\
+gr.Interface(fn=stock_prediction_app, inputs=inputs, outputs=outputs, title="台股美股潛力股推薦系統 - LSTM模型")\
     .launch()
