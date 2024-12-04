@@ -149,7 +149,7 @@ def get_top_10_potential_stocks(period, selected_indices):
             predicted_prices = predict_stock(model, data, scaler, time_step=time_step)
 
             # Calculate the potential (e.g., last predicted price vs last actual price)
-            potential = (predicted_prices[-1] - data['Close'].values[-1]) / data['Close'].values[-1]
+            potential = (predicted_prices[-1][0] - data['Close'].values[-1]) / data['Close'].values[-1]
             stock_predictions.append((ticker, potential, data['Close'].values[-1], predicted_prices[-1][0]))
         except Exception as e:
             print(f"股票 {ticker} 發生錯誤: {str(e)}")
