@@ -65,54 +65,6 @@ def get_tw0050_stocks():
         "3017.TW", "6446.TW", "4904.TW", "3661.TW", "6669.TW", "1326.TW", "5876.TW", "2395.TW", "1590.TW", "6505.TW"
     ]
 
-def get_sp500_full_stocks():
-    return [
-        "AAPL", "MSFT", "GOOGL", "GOOG", "AMZN", "META", "TSLA", "BRK.B", "NVDA", "UNH", 
-        "JNJ", "V", "WMT", "JPM", "MA", "PG", "DIS", "HD", "PYPL", "ADBE",
-        "NFLX", "CMCSA", "PEP", "KO", "MRK", "INTC", "T", "CRM", "CSCO", "PFE", 
-        "XOM", "COST", "NKE", "CVX", "WFC", "MCD", "AMGN", "MDT", "IBM", "DHR",
-        "LLY", "HON", "BA", "MMM", "NEE", "ACN", "UPS", "TMO", "AVGO", "PM",
-        "CSX", "BKNG", "LIN", "ORCL", "QCOM", "TXN", "RTX", "LOW", "MDLZ", "TMUS",
-        "ISRG", "GE", "AXP", "CAT", "INTU", "ADP", "SPGI", "AMT", "CL", "REGN",
-        "GS", "VRTX", "LMT", "NOW", "PLD", "CCI", "AON", "KDP", "CHTR", "MSCI",
-        "SNPS", "ICE", "APD", "FISV", "ELV", "HCA", "CTAS", "EQIX", "WELL", "TGT",
-        "BK", "STZ", "GILD", "SCHW", "COP", "SBUX", "ADSK", "ATVI", "ZTS", "MRNA",
-        "BLK", "PGR", "ORLY", "LRCX", "ECL", "ADI", "IDXX", "ITW", "NOC", "ETN",
-        "F", "D", "HLT", "PXD", "CARR", "ALB", "WMB", "PSA", "MPC", "TRV",
-        "KEYS", "ODFL", "FTV", "CLX", "LYB", "HIG", "KMX", "PRU", "AVB", "ARE",
-        "KIM", "EXR", "LHX", "AMP", "ROK", "VRTX", "CHRW", "SBAC", "WST", "TT",
-        "HSIC", "FE", "ULTA", "DOV", "CDNS", "FAST", "STLD", "EFX", "CE", "GL",
-        "TSCO", "MTD", "CBOE", "JBHT", "EIX", "XYL", "VLO", "POOL", "TDY", "BR",
-        "RSG", "PH", "AEE", "CMS", "XYL", "VTR", "EPAM", "ALGN", "CPT", "HSY",
-        "STE", "KMI", "AAP", "ES", "TTWO", "LVS", "WRB", "WY", "WDC", "ROL",
-        "CINF", "MKC", "EMR", "ED", "DPZ", "MSI", "HBAN", "WBA", "MOS", "NEM",
-        "IEX", "SEE", "GPN", "DLR", "NTAP", "TRMB", "ETR", "NDAQ", "RCL", "AEP",
-        "HOLX", "LW", "GWW", "NVR", "RF", "PFG", "HPE", "BBY", "MHK", "HPQ",
-        "OKE", "APA", "ALLE", "L", "BF.B", "TSN", "HST", "TPR", "TPG", "KHC",
-        "DHI", "IRM", "FMC", "CXO", "AAP", "MKTX", "HII", "MTCH", "CRL", "CPB",
-        "MRO", "RJF", "JNPR", "NTRS", "LNT", "TXT", "FFIV", "PBCT", "WU", "HAS",
-        "NWSA", "NWS", "FOXA", "FOX", "K", "NUE", "DISCK", "DISCA", "DISCB", "SYY",
-        "STT", "AKAM", "FRT", "PKI", "DTE", "PPL", "EVRG", "DVA", "BAX", "PNC",
-        "BEN", "OMC", "VAR", "AOS", "ZBRA", "ATO", "SJM", "PBCT", "JKHY", "RMD",
-        "CEG", "GPC", "BLL", "CMG", "CF", "MAS", "GME", "HUM", "HRL", "DG",
-        "CPRI", "HRB", "EL", "KSS", "SYK", "FL", "CNC", "M", "MGA", "APA"
-    ]
-
-def get_nasdaq_full_stocks():
-    return [
-        "AAPL", "NVDA", "MSFT", "AMZN", "GOOG", "GOOGL", "META", "TSLA", "AVGO", "COST", 
-        "NFLX", "TMUS", "ASML", "CSCO", "ADBE", "AMD", "PEP", "LIN", "AZN", "ISRG", 
-        "INTU", "QCOM", "TXN", "BKNG", "CMCSA", "AMGN", "HON", "ARM", "AMAT", "PDD", 
-        "PANW", "ADP", "VRTX", "GILD", "SBUX", "MU", "ADI", "MELI", "MRVL", "LRCX", 
-        "CTAS", "CRWD", "INTC", "PYPL", "KLAC", "ABNB", "MDLZ", "CDNS", "REGN", "MAR", 
-        "CEG", "SNPS", "FTNT", "DASH", "TEAM", "ORLY", "WDAY", "TTD", "CSX", "ADSK", 
-        "CHTR", "PCAR", "ROP", "CPRT", "DDOG", "NXPI", "ROST", "AEP", "MNST", "PAYX", 
-        "FANG", "FAST", "KDP", "EA", "ODFL", "LULU", "BKR", "VRSK", "XEL", "CTSH", 
-        "EXC", "KHC", "GEHC", "CCEP", "IDXX", "TTWO", "CSGP", "ZS", "MCHP", "DXCM", 
-        "ANSS", "ON", "WBD", "MDB", "GFS", "CDW", "BIIB", "ILMN", "MRNA", "DLTR", 
-        "WBA"
-    ]
-
 def get_tw0051_stocks():
     return [
         "2371.TW", "3533.TW", "2618.TW", "3443.TW", "2347.TW", "3044.TW", "2834.TW", "2385.TW", "1605.TW", "2105.TW",
@@ -148,16 +100,17 @@ def get_nasdaq_stocks():
 # Function to fetch Philadelphia Semiconductor Index component stocks
 def get_sox_stocks():
     return [
-        "NVDA", "AVGO", "GFS", "CRUS", "ON", "ASML", "QCOM", "SWKS", "MPWR", "ADI",
-        "TSM", "AMD", "TXN", "QRVO", "AMKR", "MU", "ARM", "NXPI", "TER", "ENTG",
-        "LSCC", "COHR", "ONTO", "MTSI", "KLAC", "LRCX", "MRVL", "AMAT", "INTC", "MCHP"
+        "AMD", "AVGO", "TXN", "INTC", "MU", "NVDA", "QCOM", "ASML", "LRCX", "TSM",
+        "AMAT", "ON", "NXPI", "ADI", "KLAC", "SWKS", "QRVO", "MCHP", "SLAB", "ENTG",
+        "TER", "COHU", "UCTT", "ACLS", "LSCC", "MRVL", "SYNA", "MPWR", "FORM", "UCTT"
     ]
+
 # Function to fetch Dow Jones Industrial Average component stocks
 def get_dji_stocks():
     return [
-        "AAPL", "NVDA", "MSFT", "AMZN", "WMT", "JPM", "V", "UNH", "HD", "PG",
-        "JNJ", "CRM", "CVX", "KO", "MRK", "CSCO", "IBM", "MCD", "AXP", "DIS",
-        "GS", "CAT", "VZ", "AMGN", "HON", "BA", "NKE", "SHW", "MMM", "TRV"
+        "AAPL", "MSFT", "JPM", "V", "UNH", "PG", "JNJ", "WMT", "DIS", "VZ",
+        "INTC", "KO", "MRK", "GS", "TRV", "IBM", "MMM", "CAT", "RTX", "CVX",
+        "MCD", "HON", "AXP", "WBA", "NKE", "DOW", "BA", "HD", "CRM", "AMGN"
     ]
 
 # Function to get top 10 potential stocks
@@ -167,18 +120,14 @@ def get_top_10_potential_stocks(period, selected_indices):
         stock_list += get_tw0050_stocks()
     if "台灣中型100" in selected_indices:
         stock_list += get_tw0051_stocks()
-    if "S&P精簡版30" in selected_indices:
+    if "S&P" in selected_indices:
         stock_list += get_sp500_stocks()
-    if "NASDAQ精簡版30" in selected_indices:
+    if "NASDAQ" in selected_indices:
         stock_list += get_nasdaq_stocks()
-    if "費城半導體SOX" in selected_indices:
+    if "費城半導體" in selected_indices:
         stock_list += get_sox_stocks()
-    if "道瓊DJI" in selected_indices:
+    if "道瓊" in selected_indices:
         stock_list += get_dji_stocks()
-    if "NASDAQ完整版100" in selected_indices:
-        stock_list += get_nasdaq_full_stocks()        
-    if "S&P完整版500" in selected_indices:
-        stock_list += get_sp500_full_stocks()        
 
     stock_predictions = []
     time_step = 60
@@ -223,7 +172,7 @@ def stock_prediction_app(period, selected_indices):
 # Define Gradio interface
 inputs = [
     gr.Dropdown(choices=["3mo", "6mo", "9mo", "1yr"], label="時間範圍"),
-    gr.CheckboxGroup(choices=["台灣50", "台灣中型100", "S&P精簡版30", "NASDAQ精簡版30", "費城半導體SOX", "道瓊DJI","NASDAQ完整版100", "S&P完整版500"], label="指數選擇", value=["台灣50", "台灣中型100"])
+    gr.CheckboxGroup(choices=["台灣50", "台灣中型100", "S&P", "NASDAQ", "費城半導體", "道瓊"], label="指數選擇", value=["台灣50", "台灣中型100"])
 ]
 outputs = gr.Dataframe(label="潛力股推薦結果")
 
