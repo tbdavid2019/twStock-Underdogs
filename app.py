@@ -56,47 +56,69 @@ def predict_stock(model, data, scaler, time_step=60):
     return predicted_prices
 
 # Function to fetch Taiwan 50 and Small 100 stocks
+# def get_tw0050_stocks():
+#     return [
+#         "2330.TW", "2317.TW", "2454.TW", "2308.TW", "2881.TW", "2382.TW", "2303.TW", "2882.TW", "2891.TW", "3711.TW",
+#         "2412.TW", "2886.TW", "2884.TW", "1216.TW", "2357.TW", "2885.TW", "2892.TW", "3034.TW", "2890.TW", "2327.TW",
+#         "5880.TW", "2345.TW", "3231.TW", "2002.TW", "2880.TW", "3008.TW", "2883.TW", "1303.TW", "4938.TW", "2207.TW",
+#         "2887.TW", "2379.TW", "1101.TW", "2603.TW", "2301.TW", "1301.TW", "5871.TW", "3037.TW", "3045.TW", "2912.TW",
+#         "3017.TW", "6446.TW", "4904.TW", "3661.TW", "6669.TW", "1326.TW", "5876.TW", "2395.TW", "1590.TW", "6505.TW"
+#     ]
+
+
 def get_tw0050_stocks():
-    return [
-        "2330.TW", "2317.TW", "2454.TW", "2308.TW", "2881.TW", "2382.TW", "2303.TW", "2882.TW", "2891.TW", "3711.TW",
-        "2412.TW", "2886.TW", "2884.TW", "1216.TW", "2357.TW", "2885.TW", "2892.TW", "3034.TW", "2890.TW", "2327.TW",
-        "5880.TW", "2345.TW", "3231.TW", "2002.TW", "2880.TW", "3008.TW", "2883.TW", "1303.TW", "4938.TW", "2207.TW",
-        "2887.TW", "2379.TW", "1101.TW", "2603.TW", "2301.TW", "1301.TW", "5871.TW", "3037.TW", "3045.TW", "2912.TW",
-        "3017.TW", "6446.TW", "4904.TW", "3661.TW", "6669.TW", "1326.TW", "5876.TW", "2395.TW", "1590.TW", "6505.TW"
-    ]
+    response = requests.get('https://answerbook.david888.com/TW0050')
+    data = response.json()
+    
+    # 取得股票代碼並加上 .TW
+    stocks = [f"{code}.TW" for code in data['stocks'].keys()]
+    
+    # 如果需要排序的話可以加上 sort()
+    #stocks.sort()
+    
+    return stocks
 
 def get_sp500_full_stocks():
-    return [
-        "AAPL", "MSFT", "GOOGL", "GOOG", "AMZN", "META", "TSLA", "BRK.B", "NVDA", "UNH", 
-        "JNJ", "V", "WMT", "JPM", "MA", "PG", "DIS", "HD", "PYPL", "ADBE",
-        "NFLX", "CMCSA", "PEP", "KO", "MRK", "INTC", "T", "CRM", "CSCO", "PFE", 
-        "XOM", "COST", "NKE", "CVX", "WFC", "MCD", "AMGN", "MDT", "IBM", "DHR",
-        "LLY", "HON", "BA", "MMM", "NEE", "ACN", "UPS", "TMO", "AVGO", "PM",
-        "CSX", "BKNG", "LIN", "ORCL", "QCOM", "TXN", "RTX", "LOW", "MDLZ", "TMUS",
-        "ISRG", "GE", "AXP", "CAT", "INTU", "ADP", "SPGI", "AMT", "CL", "REGN",
-        "GS", "VRTX", "LMT", "NOW", "PLD", "CCI", "AON", "KDP", "CHTR", "MSCI",
-        "SNPS", "ICE", "APD", "FISV", "ELV", "HCA", "CTAS", "EQIX", "WELL", "TGT",
-        "BK", "STZ", "GILD", "SCHW", "COP", "SBUX", "ADSK", "ATVI", "ZTS", "MRNA",
-        "BLK", "PGR", "ORLY", "LRCX", "ECL", "ADI", "IDXX", "ITW", "NOC", "ETN",
-        "F", "D", "HLT", "PXD", "CARR", "ALB", "WMB", "PSA", "MPC", "TRV",
-        "KEYS", "ODFL", "FTV", "CLX", "LYB", "HIG", "KMX", "PRU", "AVB", "ARE",
-        "KIM", "EXR", "LHX", "AMP", "ROK", "VRTX", "CHRW", "SBAC", "WST", "TT",
-        "HSIC", "FE", "ULTA", "DOV", "CDNS", "FAST", "STLD", "EFX", "CE", "GL",
-        "TSCO", "MTD", "CBOE", "JBHT", "EIX", "XYL", "VLO", "POOL", "TDY", "BR",
-        "RSG", "PH", "AEE", "CMS", "XYL", "VTR", "EPAM", "ALGN", "CPT", "HSY",
-        "STE", "KMI", "AAP", "ES", "TTWO", "LVS", "WRB", "WY", "WDC", "ROL",
-        "CINF", "MKC", "EMR", "ED", "DPZ", "MSI", "HBAN", "WBA", "MOS", "NEM",
-        "IEX", "SEE", "GPN", "DLR", "NTAP", "TRMB", "ETR", "NDAQ", "RCL", "AEP",
-        "HOLX", "LW", "GWW", "NVR", "RF", "PFG", "HPE", "BBY", "MHK", "HPQ",
-        "OKE", "APA", "ALLE", "L", "BF.B", "TSN", "HST", "TPR", "TPG", "KHC",
-        "DHI", "IRM", "FMC", "CXO", "AAP", "MKTX", "HII", "MTCH", "CRL", "CPB",
-        "MRO", "RJF", "JNPR", "NTRS", "LNT", "TXT", "FFIV", "PBCT", "WU", "HAS",
-        "NWSA", "NWS", "FOXA", "FOX", "K", "NUE", "DISCK", "DISCA", "DISCB", "SYY",
-        "STT", "AKAM", "FRT", "PKI", "DTE", "PPL", "EVRG", "DVA", "BAX", "PNC",
-        "BEN", "OMC", "VAR", "AOS", "ZBRA", "ATO", "SJM", "PBCT", "JKHY", "RMD",
-        "CEG", "GPC", "BLL", "CMG", "CF", "MAS", "GME", "HUM", "HRL", "DG",
-        "CPRI", "HRB", "EL", "KSS", "SYK", "FL", "CNC", "M", "MGA", "APA"
-    ]
+    # return [
+    #     "AAPL", "MSFT", "GOOGL", "GOOG", "AMZN", "META", "TSLA", "BRK.B", "NVDA", "UNH", 
+    #     "JNJ", "V", "WMT", "JPM", "MA", "PG", "DIS", "HD", "PYPL", "ADBE",
+    #     "NFLX", "CMCSA", "PEP", "KO", "MRK", "INTC", "T", "CRM", "CSCO", "PFE", 
+    #     "XOM", "COST", "NKE", "CVX", "WFC", "MCD", "AMGN", "MDT", "IBM", "DHR",
+    #     "LLY", "HON", "BA", "MMM", "NEE", "ACN", "UPS", "TMO", "AVGO", "PM",
+    #     "CSX", "BKNG", "LIN", "ORCL", "QCOM", "TXN", "RTX", "LOW", "MDLZ", "TMUS",
+    #     "ISRG", "GE", "AXP", "CAT", "INTU", "ADP", "SPGI", "AMT", "CL", "REGN",
+    #     "GS", "VRTX", "LMT", "NOW", "PLD", "CCI", "AON", "KDP", "CHTR", "MSCI",
+    #     "SNPS", "ICE", "APD", "FISV", "ELV", "HCA", "CTAS", "EQIX", "WELL", "TGT",
+    #     "BK", "STZ", "GILD", "SCHW", "COP", "SBUX", "ADSK", "ATVI", "ZTS", "MRNA",
+    #     "BLK", "PGR", "ORLY", "LRCX", "ECL", "ADI", "IDXX", "ITW", "NOC", "ETN",
+    #     "F", "D", "HLT", "PXD", "CARR", "ALB", "WMB", "PSA", "MPC", "TRV",
+    #     "KEYS", "ODFL", "FTV", "CLX", "LYB", "HIG", "KMX", "PRU", "AVB", "ARE",
+    #     "KIM", "EXR", "LHX", "AMP", "ROK", "VRTX", "CHRW", "SBAC", "WST", "TT",
+    #     "HSIC", "FE", "ULTA", "DOV", "CDNS", "FAST", "STLD", "EFX", "CE", "GL",
+    #     "TSCO", "MTD", "CBOE", "JBHT", "EIX", "XYL", "VLO", "POOL", "TDY", "BR",
+    #     "RSG", "PH", "AEE", "CMS", "XYL", "VTR", "EPAM", "ALGN", "CPT", "HSY",
+    #     "STE", "KMI", "AAP", "ES", "TTWO", "LVS", "WRB", "WY", "WDC", "ROL",
+    #     "CINF", "MKC", "EMR", "ED", "DPZ", "MSI", "HBAN", "WBA", "MOS", "NEM",
+    #     "IEX", "SEE", "GPN", "DLR", "NTAP", "TRMB", "ETR", "NDAQ", "RCL", "AEP",
+    #     "HOLX", "LW", "GWW", "NVR", "RF", "PFG", "HPE", "BBY", "MHK", "HPQ",
+    #     "OKE", "APA", "ALLE", "L", "BF.B", "TSN", "HST", "TPR", "TPG", "KHC",
+    #     "DHI", "IRM", "FMC", "CXO", "AAP", "MKTX", "HII", "MTCH", "CRL", "CPB",
+    #     "MRO", "RJF", "JNPR", "NTRS", "LNT", "TXT", "FFIV", "PBCT", "WU", "HAS",
+    #     "NWSA", "NWS", "FOXA", "FOX", "K", "NUE", "DISCK", "DISCA", "DISCB", "SYY",
+    #     "STT", "AKAM", "FRT", "PKI", "DTE", "PPL", "EVRG", "DVA", "BAX", "PNC",
+    #     "BEN", "OMC", "VAR", "AOS", "ZBRA", "ATO", "SJM", "PBCT", "JKHY", "RMD",
+    #     "CEG", "GPC", "BLL", "CMG", "CF", "MAS", "GME", "HUM", "HRL", "DG",
+    #     "CPRI", "HRB", "EL", "KSS", "SYK", "FL", "CNC", "M", "MGA", "APA"
+    # ]
+    response = requests.get('https://answerbook.david888.com/SP500')
+    data = response.json()
+    
+    # 取得股票代碼列表並限制數量
+    stocks = list(data['stocks'].keys())
+    
+    return stocks
+
+
 
 def get_nasdaq_full_stocks():
     return [
@@ -113,27 +135,53 @@ def get_nasdaq_full_stocks():
         "WBA"
     ]
 
+# def get_tw0051_stocks():
+#     return [
+#         "2371.TW", "3533.TW", "2618.TW", "3443.TW", "2347.TW", "3044.TW", "2834.TW", "2385.TW", "1605.TW", "2105.TW",
+#         "6239.TW", "6176.TW", "9904.TW", "1519.TW", "9910.TW", "1513.TW", "1229.TW", "9945.TW", "2313.TW", "1477.TW",
+#         "3665.TW", "2354.TW", "4958.TW", "8464.TW", "9921.TW", "2812.TW", "2059.TW", "1504.TW", "2542.TW", "6770.TW",
+#         "5269.TW", "2344.TW", "3023.TW", "1503.TW", "2049.TW", "2610.TW", "2633.TW", "3036.TW", "2368.TW", "3035.TW",
+#         "2027.TW", "9914.TW", "2408.TW", "2809.TW", "1319.TW", "2352.TW", "2337.TW", "2006.TW", "2206.TW", "4763.TW",
+#         "3005.TW", "1907.TW", "2915.TW", "1722.TW", "6285.TW", "6472.TW", "6531.TW", "3406.TW", "9958.TW", "9941.TW",
+#         "1795.TW", "2201.TW", "9917.TW", "2492.TW", "6890.TW", "2845.TW", "8454.TW", "8046.TW", "6789.TW", "2388.TW",
+#         "6526.TW", "1802.TW", "5522.TW", "6592.TW", "2204.TW", "2540.TW", "2539.TW", "3532.TW"
+#     ]
+
+
 def get_tw0051_stocks():
-    return [
-        "2371.TW", "3533.TW", "2618.TW", "3443.TW", "2347.TW", "3044.TW", "2834.TW", "2385.TW", "1605.TW", "2105.TW",
-        "6239.TW", "6176.TW", "9904.TW", "1519.TW", "9910.TW", "1513.TW", "1229.TW", "9945.TW", "2313.TW", "1477.TW",
-        "3665.TW", "2354.TW", "4958.TW", "8464.TW", "9921.TW", "2812.TW", "2059.TW", "1504.TW", "2542.TW", "6770.TW",
-        "5269.TW", "2344.TW", "3023.TW", "1503.TW", "2049.TW", "2610.TW", "2633.TW", "3036.TW", "2368.TW", "3035.TW",
-        "2027.TW", "9914.TW", "2408.TW", "2809.TW", "1319.TW", "2352.TW", "2337.TW", "2006.TW", "2206.TW", "4763.TW",
-        "3005.TW", "1907.TW", "2915.TW", "1722.TW", "6285.TW", "6472.TW", "6531.TW", "3406.TW", "9958.TW", "9941.TW",
-        "1795.TW", "2201.TW", "9917.TW", "2492.TW", "6890.TW", "2845.TW", "8454.TW", "8046.TW", "6789.TW", "2388.TW",
-        "6526.TW", "1802.TW", "5522.TW", "6592.TW", "2204.TW", "2540.TW", "2539.TW", "3532.TW"
-    ]
+    response = requests.get('https://answerbook.david888.com/TW0051')
+    data = response.json()
+    
+    # 取得股票代碼並加上 .TW
+    stocks = [f"{code}.TW" for code in data['stocks'].keys()]
+    
+    # 如果需要排序的話可以加上 sort()
+    # stocks.sort()
+    
+    return stocks
+
 
 # Function to fetch S&P 500 component stocks
-def get_sp500_stocks():
-    return [
-        "AAPL", "MSFT", "GOOGL", "AMZN", "FB", "TSLA", "BRK-B", "JNJ", "V", "WMT",
-        "JPM", "MA", "PG", "NVDA", "UNH", "DIS", "HD", "PYPL", "VZ", "ADBE",
-        "NFLX", "CMCSA", "PEP", "KO", "MRK", "INTC", "T", "CRM", "CSCO", "PFE",
-        "XOM", "COST", "NKE", "CVX", "WFC", "MCD", "AMGN", "MDT", "IBM", "DHR",
-        "LLY", "HON", "BA", "MMM", "NEE", "ACN", "UPS", "TMO", "AVGO", "PM"
-    ]
+# def get_sp500_stocks():
+#     return [
+#         "AAPL", "MSFT", "GOOGL", "AMZN", "FB", "TSLA", "BRK-B", "JNJ", "V", "WMT",
+#         "JPM", "MA", "PG", "NVDA", "UNH", "DIS", "HD", "PYPL", "VZ", "ADBE",
+#         "NFLX", "CMCSA", "PEP", "KO", "MRK", "INTC", "T", "CRM", "CSCO", "PFE",
+#         "XOM", "COST", "NKE", "CVX", "WFC", "MCD", "AMGN", "MDT", "IBM", "DHR",
+#         "LLY", "HON", "BA", "MMM", "NEE", "ACN", "UPS", "TMO", "AVGO", "PM"
+#     ]
+
+
+def get_sp500_stocks(limit=50):
+    response = requests.get('https://answerbook.david888.com/SP500')
+    data = response.json()
+    
+    # 取得股票代碼列表並限制數量
+    stocks = list(data['stocks'].keys())[:limit]
+    
+    return stocks
+
+
 
 # Function to fetch NASDAQ component stocks
 def get_nasdaq_stocks():
