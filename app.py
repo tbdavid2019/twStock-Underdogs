@@ -185,13 +185,21 @@ def get_sp500_stocks(limit=50):
 
 # Function to fetch NASDAQ component stocks
 def get_nasdaq_stocks():
-    return [
-        "AAPL", "MSFT", "AMZN", "TSLA", "GOOGL", "GOOG", "FB", "NVDA", "PYPL", "ADBE",
-        "CMCSA", "NFLX", "COST", "PEP", "CSCO", "INTC", "TXN", "AVGO", "AMGN", "QCOM",
-        "CHTR", "TMUS", "SBUX", "MDLZ", "ISRG", "BKNG", "MRNA", "FISV", "CSX", "ADI",
-        "VRTX", "ATVI", "GILD", "ILMN", "ADP", "MU", "KLAC", "LRCX", "EA", "KHC",
-        "JD", "MAR", "BIDU", "MELI", "ROST", "NXPI", "SPLK", "ALGN", "DOCU", "PDD"
-    ]
+    # return [
+    #     "AAPL", "MSFT", "AMZN", "TSLA", "GOOGL", "GOOG", "FB", "NVDA", "PYPL", "ADBE",
+    #     "CMCSA", "NFLX", "COST", "PEP", "CSCO", "INTC", "TXN", "AVGO", "AMGN", "QCOM",
+    #     "CHTR", "TMUS", "SBUX", "MDLZ", "ISRG", "BKNG", "MRNA", "FISV", "CSX", "ADI",
+    #     "VRTX", "ATVI", "GILD", "ILMN", "ADP", "MU", "KLAC", "LRCX", "EA", "KHC",
+    #     "JD", "MAR", "BIDU", "MELI", "ROST", "NXPI", "SPLK", "ALGN", "DOCU", "PDD"
+    # ]
+    response = requests.get('http://13.125.121.198:8090/stocks/NASDAQ100')
+    data = response.json()
+    
+    # 取得股票代碼列表並限制數量
+    stocks = list(data['stocks'].keys())
+    
+    return stocks
+
 
 # Function to fetch Philadelphia Semiconductor Index component stocks
 def get_sox_stocks():
@@ -202,11 +210,19 @@ def get_sox_stocks():
     ]
 # Function to fetch Dow Jones Industrial Average component stocks
 def get_dji_stocks():
-    return [
-        "AAPL", "NVDA", "MSFT", "AMZN", "WMT", "JPM", "V", "UNH", "HD", "PG",
-        "JNJ", "CRM", "CVX", "KO", "MRK", "CSCO", "IBM", "MCD", "AXP", "DIS",
-        "GS", "CAT", "VZ", "AMGN", "HON", "BA", "NKE", "SHW", "MMM", "TRV"
-    ]
+    # return [
+    #     "AAPL", "NVDA", "MSFT", "AMZN", "WMT", "JPM", "V", "UNH", "HD", "PG",
+    #     "JNJ", "CRM", "CVX", "KO", "MRK", "CSCO", "IBM", "MCD", "AXP", "DIS",
+    #     "GS", "CAT", "VZ", "AMGN", "HON", "BA", "NKE", "SHW", "MMM", "TRV"
+    # ]
+    response = requests.get('http://13.125.121.198:8090/stocks/DOWJONES')
+    data = response.json()
+    
+    # 取得股票代碼列表並限制數量
+    stocks = list(data['stocks'].keys())
+    
+    return stocks
+
 
 # Function to get top 10 potential stocks
 def get_top_10_potential_stocks(period, selected_indices):
@@ -215,7 +231,7 @@ def get_top_10_potential_stocks(period, selected_indices):
         stock_list += get_tw0050_stocks()
     if "台灣中型100" in selected_indices:
         stock_list += get_tw0051_stocks()
-    if "S&P精簡版30" in selected_indices:
+    if "S&P精簡版50" in selected_indices:
         stock_list += get_sp500_stocks()
     if "NASDAQ精簡版30" in selected_indices:
         stock_list += get_nasdaq_stocks()
