@@ -175,41 +175,26 @@ def get_top_10_potential_stocks(period, selected_indices):
     time_step = 60
 
     for ticker in stock_list:
+        data = get_stock_data(ticker, period)
+        if data.empty or len(data) < time_step:
+            # 如果數據為空或不足以生成訓練樣本，則跳過該股票
+            continue
+
         try:
-            data = get_stock_data(ticker, period)
-            if data.empty:
-                continue
-                
-            ts_data = prepare_data_chronos(data)
-            predictor = TimeSeriesPredictor(
-                prediction_length=prediction_length,
-                freq="D",
-                target="target"
-            )
-            
-            predictor.fit(
-                ts_data,
-                hyperparameters={
-                    "Chronos": {"model_path": "autogluon/chronos-bolt-base"}
-                }
-            )
-            
-            predictions = predictor.predict(ts_data)
-            
-            # 修改這部分以使用最高預測值
-            last_actual = float(data['Close'].iloc[-1])
-            highest_pred = float(predictions.values.max())  # 找出預測序列中的最高值
-            potential = (highest_pred - last_actual) / last_actual
-            
-            stock_predictions.append((
-                ticker, 
-                potential, 
-                last_actual, 
-                highest_pred  # 這裡也改為顯示最高預測值
-            ))
-            
+            # Prepare data
+            X_train, y_train, scaler = prepare_data(data, time_step=time_step)
+
+            # Train model
+            model = train_lstm_model(X_train, y_train)
+
+            # Predict future prices
+            predicted_prices = predict_stock(model, data, scaler, time_step=time_step)
+
+            # Calculate the potential (e.g., last predicted price vs last actual price)
+            potential = (predicted_prices[-1][0] - data['Close'].values[-1]) / data['Close'].values[-1]
+            stock_predictions.append((ticker, potential, data['Close'].values[-1], predicted_prices[-1][0]))
         except Exception as e:
-            print(f"Stock {ticker} error: {str(e)}")
+            print(f"股票 {ticker} 發生錯誤: {str(e)}")
             continue
 
     # Sort by potential and get top 10
